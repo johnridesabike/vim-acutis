@@ -1,0 +1,104 @@
+{% interface
+  title = ?string
+  hello = string
+  a = ?string
+  b = string
+  var = string
+  c = ?string
+  h1 = ?string
+  h2 = string
+  thing =
+    {
+      dict: <false | true>,
+      floating: float,
+      integer: int,
+      nulllist: [?string],
+      union:
+        {
+          @tag: 100,
+          tuple: (
+            @999 | ...,
+            @"abc" | ...
+          )
+        }
+        | ...
+    }
+
+  B = ?
+  Head = ?
+/interface ~%}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% match title with null %} {% with !title %} {{ title }} {% /match %}
+    </title>
+    {{ Head ? "" }}
+  </head>
+  <body>
+    <main>
+      <h1>Acutis syntax example</h1>
+
+      <h2>Echoes</h2>
+      <dl>
+        <dt>
+        Basic echoes
+        <dd>
+        {{hello}} {{ hello}} {{hello }} {{ hello }}
+
+        <dt>
+        Advanced echoes
+        <dd>
+        {{~ &a ? B ? c ? "d\"e" ~}}
+      </dl>
+
+      <h2>Comments</h2>
+      {* Comments work {* nested *} comments work *}
+
+      <h2>Pattern matching</h2>
+      {% match thing with
+        {
+          integer: -100,
+          floating: 100.555,
+          nulllist: [!"a", null, ...rest],
+          dict: <istrue: true, isfalse: false>,
+          union: {@tag: 100, tuple: (@999, @"abc")}
+        }
+      %} blah
+
+      {% with _ %} bleh
+      {% /match %}
+
+      <h2>Components</h2>
+      {% Component
+        prop1=a
+        prop2="b"
+        / %}
+      {% Component2 %} children {% /Component2 %}
+      {% Component3 Children=#%} children {%/# / %}
+
+      <h2>Highlighting works inside of HTML syntax</h2>
+      <h3>Strings</h3>
+      <span class="foo {{ var }}">attribute value</span>
+
+      <h3>Links</h3>
+      <a href=/index.html> Link text {{ a ? b }} </a>
+
+      <h3>Headings</h3>
+      <h1>text {{ var }}</h1>
+      <h2>text {{ var }}</h2>
+      <h3>text {{ var }}</h3>
+      <h4>text {{ var }}</h4>
+      <h5>text {{ var }}</h5>
+      <h6>text {{ var }}</h6>
+
+      <h3>Comments</h3>
+      <!-- text {{ var }} -->
+
+      <h3>Tags</h3>
+      <{{ h1 ? h2 }}>Text</{{ h1 ? h2 }}>
+
+    </main>
+  </body>
+</html>
+

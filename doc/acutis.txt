@@ -1,0 +1,6 @@
+*acutis.txt*                        Vim filetype plugin for the Acutis language.
+
+                                     ACUTIS
+                                by John Jackson
+
+This plugin adds syntax highlighting and indentation for Acutis HTML files.
