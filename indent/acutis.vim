@@ -1,6 +1,7 @@
 " Vim indent file
-" Language: Acutis
+" Language:   Acutis
 " Maintainer: John Jackson
+" URL:        https://github.com/johnridesabike/vim-acutis
 
 if exists("b:did_indent")
   finish
