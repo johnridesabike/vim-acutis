@@ -2,9 +2,9 @@
   title = ?string
   hello = string
   a = ?string
-  b = string
-  var = string
+  b = ?string
   c = ?string
+  var = string
   h1 = ?string
   h2 = string
   thing =
@@ -23,17 +23,18 @@
         }
         | ...
     }
-
-  B = ?
-  Head = ?
-/interface ~%}
+  head = ?string
+  num = ?int
+  frac = ?float
+  binary = false | true
+/ ~%}
 <!DOCTYPE html>
 <html>
   <head>
     <title>
       {% match title with null %} {% with !title %} {{ title }} {% /match %}
     </title>
-    {{ Head ? "" }}
+    {{{ head ? "" }}}
   </head>
   <body>
     <main>
@@ -49,7 +50,13 @@
         <dt>
         Advanced echoes
         <dd>
-        {{~ &a ? B ? c ? "d\"e" ~}}
+        {{{~ a ? b ? c ? "d\"e" ~}}}
+
+        <dt>
+        Format specifiers
+        <dd>
+        {{ %i num ? %f frac ? %b binary }}
+        {{ %,i num ? %.2f frac ? %b binary }}
       </dl>
 
       <h2>Comments</h2>
@@ -60,7 +67,7 @@
         {
           integer: -100,
           floating: 100.555,
-          nulllist: [!"a", null, ...rest],
+          nulllist: [!"a", null, ..._rest],
           dict: <istrue: true, isfalse: false>,
           union: {@tag: 100, tuple: (@999, @"abc")}
         }
@@ -75,14 +82,14 @@
         prop2="b"
         / %}
       {% Component2 %} children {% /Component2 %}
-      {% Component3 Children=#%} children {%/# / %}
+      {% Component3 children=#%} children {%# / %}
 
       <h2>Highlighting works inside of HTML syntax</h2>
       <h3>Strings</h3>
       <span class="foo {{ var }}">attribute value</span>
 
       <h3>Links</h3>
-      <a href=/index.html> Link text {{ a ? b }} </a>
+      <a href=/index.html> Link text {{ a ? "" }} </a>
 
       <h3>Headings</h3>
       <h1>text {{ var }}</h1>
@@ -101,4 +108,3 @@
     </main>
   </body>
 </html>
-
