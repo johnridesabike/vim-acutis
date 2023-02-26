@@ -35,6 +35,7 @@
       {% match title with null %} {% with !title %} {{ title }} {% /match %}
     </title>
     {{{ head ? "" }}}
+    <style> {* Acutis syntax works in CSS *} </style>
   </head>
   <body>
     <main>

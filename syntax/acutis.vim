@@ -65,7 +65,7 @@ syntax cluster acutisEchoSyntax contains=
 syntax cluster acutisContainer contains=
       \htmlHead,htmlTitle,htmlString,htmlH1,htmlH2,htmlH3,htmlH4,htmlH5,htmlH6,
       \htmlLink,htmlBold,htmlUnderline,htmlItalic,htmlValue,htmlComment,htmlTag,
-      \htmlEndTag
+      \htmlEndTag,cssStyle
 
 highlight default link acutisComment            Comment
 highlight default link acutisPattern            htmlEndTag
