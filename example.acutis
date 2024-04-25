@@ -32,9 +32,9 @@
 <html>
   <head>
     <title>
-      {% match title with null %} {% with !title %} {{ title }} {% /match %}
+      {% match title with null %} {% with !title %} {% title %} {% /match %}
     </title>
-    {{{ head ? "" }}}
+    {{% head ? "" %}}
     <style> {* Acutis syntax works in CSS *} </style>
   </head>
   <body>
@@ -46,18 +46,18 @@
         <dt>
         Basic echoes
         <dd>
-        {{hello}} {{ hello}} {{hello }} {{ hello }}
+        {%hello%} {% hello%} {%hello %} {% hello %}
 
         <dt>
         Advanced echoes
         <dd>
-        {{{~ a ? b ? c ? "d\"e" ~}}}
+        {{%~ a ? b ? c ? "d\"e" ~%}}
 
         <dt>
         Format specifiers
         <dd>
-        {{ %i num ? %f frac ? %b binary }}
-        {{ %,i num ? %.2f frac ? %b binary }}
+        {% %i num ? %f frac ? %b binary %}
+        {% %,i num ? %.2f frac ? %b binary %}
       </dl>
 
       <h2>Comments</h2>
@@ -87,24 +87,24 @@
 
       <h2>Highlighting works inside of HTML syntax</h2>
       <h3>Strings</h3>
-      <span class="foo {{ var }}">attribute value</span>
+      <span class="foo {% var %}">attribute value</span>
 
       <h3>Links</h3>
-      <a href=/index.html> Link text {{ a ? "" }} </a>
+      <a href=/index.html> Link text {% a ? "" %} </a>
 
       <h3>Headings</h3>
-      <h1>text {{ var }}</h1>
-      <h2>text {{ var }}</h2>
-      <h3>text {{ var }}</h3>
-      <h4>text {{ var }}</h4>
-      <h5>text {{ var }}</h5>
-      <h6>text {{ var }}</h6>
+      <h1>text {% var %}</h1>
+      <h2>text {% var %}</h2>
+      <h3>text {% var %}</h3>
+      <h4>text {% var %}</h4>
+      <h5>text {% var %}</h5>
+      <h6>text {% var %}</h6>
 
       <h3>Comments</h3>
-      <!-- text {{ var }} -->
+      <!-- text {% var %} -->
 
       <h3>Tags</h3>
-      <{{ h1 ? h2 }}>Text</{{ h1 ? h2 }}>
+      <{% h1 ? h2 %}>Text</{% h1 ? h2 %}>
 
     </main>
   </body>
