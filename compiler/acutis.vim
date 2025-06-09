@@ -19,9 +19,11 @@ if exists(":CompilerSet") != 2
 endif
 
 CompilerSet errorformat =
-      \%EFile\ \"%f\"\\,\ %l:%c-%*\\d:%*\\d,
-      \%EFile\ \"%f\",
-      \%+ECompile\ error.,
+      \%EError\ in\ file\ \"%f\"\\,\ %l:%c-%*\\d:%*\\d.,
+      \%WWarning\ in\ file\ \"%f\"\\,\ %l:%c-%*\\d:%*\\d.,
+      \%EError\ while\ rendering\ \"%f\".,
+      \%EError.,
+      \%WWarning.,
       \%C%m,
 
 let &cpo = s:cpo_save
